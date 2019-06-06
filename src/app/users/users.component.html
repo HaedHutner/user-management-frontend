@@ -1,0 +1,25 @@
+<h1>User List</h1>
+
+<div class="toolbar">
+  <button id="prevPageButton" [disabled]="currentPage == 0" (click)="previousPage()">Previous Page</button>
+  <label>
+    Sort By:
+    <select id="sortSelect" (change)="sortList($event)">
+      <option value="" disabled>Select Field To Sort By</option>
+      <option value="id">Id</option>
+      <option value="email">E-Mail</option>
+      <option value="firstName">First Name</option>
+      <option value="lastName">Last Name</option>
+      <option value="dateOfBirth">Date Of Birth</option>
+    </select>
+  </label>
+  <button id="nextPageButton" [disabled]="userList.length < amountPerPage" (click)="nextPage()">Next Page</button>
+</div>
+
+<ul *ngIf="userList">
+  <li *ngFor="let user of userList">
+    <p >{{user.id}}. {{user.email}} - {{user.firstName}} {{user.lastName}}, Born: {{user.dateOfBirth}}</p>
+    <button>Edit User</button>
+    <button (click)="deleteUser(user.id)">Delete User</button>
+  </li>
+</ul>

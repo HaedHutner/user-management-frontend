@@ -1,0 +1,53 @@
+<h1>Create User</h1>
+
+<form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+
+  <h5 *ngIf="!success">Failed to create user.</h5>
+
+  <h5 *ngIf="success">Successfully created user</h5>
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+    <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.firstName.errors" class="error">
+      <div *ngIf="createUserForm.controls.firstName.errors.required">You must provide a first name</div>
+    </div>
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+    <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.lastName.errors" class="error">
+      <div *ngIf="createUserForm.controls.lastName.errors.required">You must provide a last name</div>
+    </div>
+  </label>
+
+  <label>
+    E-mail:
+    <input type="text" formControlName="email">
+    <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.email.errors" class="error">
+      <div *ngIf="createUserForm.controls.email.errors.required || createUserForm.controls.email.errors.email">You must provide a valid email address</div>
+    </div>
+  </label>
+
+  <label>
+    Date of Birth:
+    <input type="date" formControlName="dateOfBirth">
+    <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.dateOfBirth.errors" class="error">
+      <div *ngIf="createUserForm.controls.dateOfBirth.errors.required">You must provide a date of birth</div>
+    </div>
+  </label>
+
+  <label>
+    Password:
+    <input type="password" formControlName="password">
+    <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.password.errors" class="error">
+      <div *ngIf="createUserForm.controls.password.errors.required">You must provide a valid password</div>
+      <div *ngIf="createUserForm.controls.password.errors.minLength">Password is too short</div>
+      <div *ngIf="createUserForm.controls.password.errors.maxLength">Password is too long</div>
+    </div>
+  </label>
+
+  <input type="submit" value="Create User" class="submitButton">
+
+</form>
