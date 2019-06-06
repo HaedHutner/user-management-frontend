@@ -12,6 +12,8 @@ export class CreateUserComponent implements OnInit {
 
   createUserForm: FormGroup;
   hasBeenSubmittedOnce = false;
+
+  errorMessage: string;
   success = false;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
@@ -34,14 +36,15 @@ export class CreateUserComponent implements OnInit {
       return;
     }
 
-    const createdUserId = this.userService.createUser(this.createUserForm).subscribe(result => {
-      if (result) {
-        console.log(`Created User ${result}`);
+    this.userService.createUser(this.createUserForm).subscribe(
+      (result) => {
         this.success = true;
-      } else {
+      },
+      (error) => {
         this.success = false;
+        this.errorMessage = "Failed to create user: " + error['error']['message'];
       }
-    });
+    );
   }
 
 }

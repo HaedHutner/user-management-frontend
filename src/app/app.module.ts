@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { TopnavComponent } from './topnav/topnav.component';
 import { UsersComponent } from './users/users.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopnavComponent,
     UsersComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,9 @@
 
 <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
 
-  <h5 *ngIf="!success">Failed to create user.</h5>
+  <h5 *ngIf="errorMessage">{{errorMessage}}</h5>
 
-  <h5 *ngIf="success">Successfully created user</h5>
+  <h5 *ngIf="!errorMessage && success">Successfully created user!</h5>
 
   <label>
     First Name:
@@ -43,8 +43,8 @@
     <input type="password" formControlName="password">
     <div *ngIf="hasBeenSubmittedOnce && createUserForm.controls.password.errors" class="error">
       <div *ngIf="createUserForm.controls.password.errors.required">You must provide a valid password</div>
-      <div *ngIf="createUserForm.controls.password.errors.minLength">Password is too short</div>
-      <div *ngIf="createUserForm.controls.password.errors.maxLength">Password is too long</div>
+      <div *ngIf="createUserForm.controls.password.errors.minlength">Password is too short</div>
+      <div *ngIf="createUserForm.controls.password.errors.maxlength">Password is too long</div>
     </div>
   </label>
 

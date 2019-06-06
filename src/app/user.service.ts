@@ -33,10 +33,22 @@ export class UserService {
     })
   }
 
+  public updateUser(userId: number, updateUserForm: FormGroup) {
+    const requestBody = {};
+    requestBody['firstName'] = updateUserForm.value['firstName'];
+    requestBody['lastName'] = updateUserForm.value['lastName'];
+    requestBody['email'] = updateUserForm.value['email'];
+    requestBody['dateOfBirth'] = updateUserForm.value['dateOfBirth'];
+    return this.httpClient.put(`${this.api}/api/user/${userId}/update`, requestBody);
+  }
+
   public deleteUser(userId: number) {
     this.httpClient.delete(`${this.api}/api/user/${userId}/delete`).subscribe(result => {
-      
     });
+  }
+
+  public getUser(userId: number) {
+    return this.httpClient.get(`${this.api}/api/user/${userId}`);
   }
 
 }

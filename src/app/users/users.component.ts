@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../user.service';
 
@@ -19,16 +20,16 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers(this.currentPage, this.amountPerPage).subscribe(result => {
-      this.userList = result.content;
+      this.userList = result['content'];
     })
   }
 
   nextPage() {
     this.userService.getUsers(this.currentPage + 1, this.amountPerPage).subscribe(result => {
-      if (result.content.length == 0) {
+      if (result['content'].length == 0) {
         return;
       } else {
-        this.userList = result.content;
+        this.userList = result['content'];
         this.currentPage = this.currentPage + 1;
       }
     });
@@ -36,7 +37,7 @@ export class UsersComponent implements OnInit {
 
   sortList(e) {
     this.userService.getUsers(this.currentPage, this.amountPerPage, e.target.value).subscribe(result => {
-      this.userList = result.content;
+      this.userList = result['content'];
     });
   }
 
@@ -46,7 +47,7 @@ export class UsersComponent implements OnInit {
     }
 
     this.userService.getUsers(this.currentPage - 1, this.amountPerPage).subscribe(result => {
-      this.userList = result.content;
+      this.userList = result['content'];
       this.currentPage = this.currentPage - 1;
     });
   }

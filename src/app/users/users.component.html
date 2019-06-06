@@ -1,7 +1,9 @@
 <h1>User List</h1>
 
-<div class="toolbar">
-  <button id="prevPageButton" [disabled]="currentPage == 0" (click)="previousPage()">Previous Page</button>
+<p *ngIf="userList.length == 0">Nothing here! Try creating a user, first :)</p>
+
+<div *ngIf="userList.length != 0" class="toolbar">
+  <button id="prevPageButton" class="button" [disabled]="currentPage == 0" (click)="previousPage()">Previous Page</button>
   <label>
     Sort By:
     <select id="sortSelect" (change)="sortList($event)">
@@ -13,13 +15,30 @@
       <option value="dateOfBirth">Date Of Birth</option>
     </select>
   </label>
-  <button id="nextPageButton" [disabled]="userList.length < amountPerPage" (click)="nextPage()">Next Page</button>
+  <button id="nextPageButton" class="button" [disabled]="userList.length < amountPerPage" (click)="nextPage()">Next Page</button>
 </div>
 
-<ul *ngIf="userList">
-  <li *ngFor="let user of userList">
-    <p >{{user.id}}. {{user.email}} - {{user.firstName}} {{user.lastName}}, Born: {{user.dateOfBirth}}</p>
-    <button>Edit User</button>
-    <button (click)="deleteUser(user.id)">Delete User</button>
-  </li>
-</ul>
+<table id="userTable" *ngIf="userList.length != 0">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>E-Mail</th>
+      <th>Date Of Birth</th>
+      <th>Update</th>
+      <th class="deleteButtonCell">Delete</th>
+    </tr>
+  </thead>
+  <tbody>      
+    <tr *ngFor="let user of userList">
+      <td>{{user.id}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.dateOfBirth}}</td>
+      <td class="updateButtonCell"><button class="button" [routerLink]="['/users/edit',user.id]">Edit User</button></td>
+      <td class="deleteButtonCell"><button class="button" (click)="deleteUser(user.id)">Delete User</button></td>
+    </tr>
+  </tbody>
+</table>

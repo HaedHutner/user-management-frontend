@@ -1,0 +1,80 @@
+.toolbar {
+    display: block;
+    width: 100%;
+}
+
+.button {
+    padding: 5px;
+    background: #258025;
+    color: white;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #359035;
+}
+
+.button:disabled {
+    background: #35908c;
+}
+
+.button:disabled:hover {
+    background: #35908c;
+}
+
+.updateButtonCell {
+    text-align: center;
+}
+
+.deleteButtonCell {
+    text-align: center;
+    border-right: solid 1px #cccccc;
+}
+
+#prevPageButton {
+    float: left;
+}
+
+#nextPageButton {
+    float: right;
+}
+
+#sortSelect {
+    padding: 5px;
+    background: white;
+    color: black;
+    border-radius: 5px;
+}
+
+#sortSelect:hover {
+    background: #ddffdd;
+}
+
+#userTable {
+    width: 100%;
+    border-spacing: 0px;
+    margin-top: 25px;
+}
+
+#userTable thead tr th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #dddddd;
+    border-left: solid 1px #cccccc;
+}
+
+#userTable tbody tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-left: solid 1px #cccccc;
+}
+
+#userTable tbody tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#userTable tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}

@@ -1,0 +1,48 @@
+<h1>Edit User</h1>
+
+<form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+
+  <h5 *ngIf="errorMessage">{{errorMessage}}</h5>
+
+  <h5 *ngIf="!errorMessage && success">Successfully updated user!</h5>
+
+  <label>
+    Id:
+    <input type="text" value="{{userId}}" disabled>
+  </label>
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+    <div *ngIf="hasBeenSubmittedOnce && updateUserForm.controls.firstName.errors" class="error">
+      <div *ngIf="updateUserForm.controls.firstName.errors.required">You must provide a first name</div>
+    </div>
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+    <div *ngIf="hasBeenSubmittedOnce && updateUserForm.controls.lastName.errors" class="error">
+      <div *ngIf="updateUserForm.controls.lastName.errors.required">You must provide a last name</div>
+    </div>
+  </label>
+
+  <label>
+    E-mail:
+    <input type="text" formControlName="email">
+    <div *ngIf="hasBeenSubmittedOnce && updateUserForm.controls.email.errors" class="error">
+      <div *ngIf="updateUserForm.controls.email.errors.required || updateUserForm.controls.email.errors.email">You must provide a valid email address</div>
+    </div>
+  </label>
+
+  <label>
+    Date of Birth:
+    <input type="date" formControlName="dateOfBirth">
+    <div *ngIf="hasBeenSubmittedOnce && updateUserForm.controls.dateOfBirth.errors" class="error">
+      <div *ngIf="updateUserForm.controls.dateOfBirth.errors.required">You must provide a date of birth</div>
+    </div>
+  </label>
+
+  <input type="submit" value="Update User" class="submitButton">
+
+</form>
